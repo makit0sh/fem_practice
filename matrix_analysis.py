@@ -173,6 +173,8 @@ class System:
         self.nodes = dict()
         self.members = dict()
         self.K_total = None
+        self.f_total = None
+        self.d_total = None
 
     def load_nodes_csv(self, filename):
         """節点の条件をcsvファイルから読み取る.
