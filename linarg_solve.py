@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def solve_gauss(A_array, b_vector):
+    """ガウス法で連立方程式を解く"""
     N = b_vector.size
     A = A_array.copy()
     b = b_vector.copy()
@@ -22,13 +23,13 @@ def solve_gauss(A_array, b_vector):
     return b
 
 def solve_jacobi(A_array, b_vector, EPS=1e-5):
+    """ヤコビ法で反復的に連立方程式を解く"""
     x = np.zeros_like(b_vector)
     x_next = np.zeros_like(x)
     LmU = A_array.copy()
     for i in range(x.size):
         x_next[i] = b_vector[i]/A_array[i, i]
         LmU[i, i] = 0
-
     n=0
     while np.linalg.norm(x-x_next) > EPS:
         n += 1
@@ -50,26 +51,28 @@ def main():
                 [2, 3, 2, 3, 2, -4]] )
     b_vector = np.array([ 16., 12, 12, 16, 18, 20 ])
 
-    #A_array = np.array([[2, 3], [4, 7]])
-    #b_vector = np.array([2, 6])
     print("Solved by numpy.linarg.solve (for comparison)")
     x = np.linalg.solve(A_array, b_vector)
     b_check = A_array.dot(x)
     print(x)
-    print(b_check)
+    print('計算誤差')
+    print(b_vector-b_check)
 
     print("ガウスの消去法で直接求解")
     x = solve_gauss(A_array, b_vector)
     b_check = A_array.dot(x)
     print(x)
-    print(b_check)
+    print('計算誤差')
+    print(b_vector-b_check)
 
     print("Jacobi法により反復法で求解")
     x,n = solve_jacobi(A_array, b_vector)
     b_check = A_array.dot(x)
     print(x)
+    print('反復回数')
     print(n)
-    print(b_check)
+    print('計算誤差')
+    print(b_vector-b_check)
 
 if __name__ == '__main__':
     main()

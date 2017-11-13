@@ -11,8 +11,8 @@ def main():
 
     system.solve()
 
-    system.draw_displacement(y_margin_scale=0.5)
     system.print_result()
+    system.draw_displacement(y_margin_scale=0.5)
 
 
 if __name__ == '__main__':

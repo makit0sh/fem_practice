@@ -1,4 +1,4 @@
 ex1 nodes data (index, x, y, x_bind, y_bind, x_load, y_load)
 1, 1, 0, 0, 0, None, None
 2, 0, 0, 0, 0, None, None
-3, 1, 1, None, None, 10, 0
+3, 1, 1, None, None, 10e3, 0
